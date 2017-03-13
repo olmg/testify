@@ -2,10 +2,11 @@ package mock
 
 import (
 	"errors"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 /*
@@ -1155,4 +1156,8 @@ func Test_WaitUntil_Parallel(t *testing.T) {
 
 	// Allow the first call to execute, so the second one executes afterwards
 	ch2 <- time.Now()
+}
+func Test_DiffArguments_ArgumentsWithDifferentLengthsReturnStringInsteadOfError(t *testing.T) {
+	result := diffArguments(Arguments{"foo", "bar"}, Arguments{"foo"})
+	require.NotNil(t, result, "result should not be nil")
 }
